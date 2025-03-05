@@ -38,11 +38,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.backgroundColor = .white
         window?.windowScene = windowScene
         
-        let homeViewController = HomeBuilder.build()
-        let navigationController = UINavigationController(rootViewController: homeViewController)
+        let tabBarController = TabBarController()
         
-        window?.rootViewController = navigationController
-        print(window?.windowScene?.isFullScreen)
+        window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
     }
 
