@@ -54,6 +54,7 @@ class HomeViewController: UIViewController {
 
     private func setupView() {
         // Initialize and configure your subviews here
+        edgesForExtendedLayout = []
         self.view.backgroundColor = .yellow
     }
 
