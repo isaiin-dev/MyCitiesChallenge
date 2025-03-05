@@ -1,8 +1,8 @@
 //
-//  HomePresenter.swift
+//  CityListPresenter.swift
 //  MyCitiesChallenge
 //
-//  Created by Alejandro isai Acosta Martinez on 04/03/25.
+//  Created by Alejandro isai Acosta Martinez on 05/03/25.
 //  Copyright (c) 2025 ___ORGANIZATIONNAME___. All rights reserved.
 //
 //  The presenter is the only layer that communicates with the view
@@ -16,21 +16,21 @@
 
 import Foundation
 
-protocol HomePresentationLogic {
-    func presentSuccess(response: Home.SomeUseCase.Response)
+protocol CityListPresentationLogic {
+    func presentSuccess(response: CityList.SomeUseCase.Response)
     func presentFailure(message: String)
 }
 
-final class HomePresenter: Presenter, HomePresentationLogic {
+final class CityListPresenter: Presenter, CityListPresentationLogic {
     
     // MARK: - Properties
 
-    weak var view: HomeDisplayLogic?
+    weak var view: CityListDisplayLogic?
 
     // MARK: - Presentation Logic
 
-    func presentSuccess(response: Home.SomeUseCase.Response) {
-        let viewModel = Home.SomeUseCase.ViewModel()
+    func presentSuccess(response: CityList.SomeUseCase.Response) {
+        let viewModel = CityList.SomeUseCase.ViewModel()
         view?.displaySomething(viewModel: viewModel)
     }
 

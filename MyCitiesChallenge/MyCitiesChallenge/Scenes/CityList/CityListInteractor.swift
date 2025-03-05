@@ -1,8 +1,8 @@
 //
-//  HomeInteractor.swift
+//  CityListInteractor.swift
 //  MyCitiesChallenge
 //
-//  Created by Alejandro isai Acosta Martinez on 04/03/25.
+//  Created by Alejandro isai Acosta Martinez on 05/03/25.
 //  Copyright (c) 2025 ___ORGANIZATIONNAME___. All rights reserved.
 //
 //  The interactor is responsible for managing data from the model layer 
@@ -15,26 +15,26 @@
 
 import Foundation
 
-protocol HomeBusinessLogic {
-    func requestSomething(request: Home.SomeUseCase.Request)
+protocol CityListBusinessLogic {
+    func requestSomething(request: CityList.SomeUseCase.Request)
     func userInteractionInSomewhere()
 }
 
-final class HomeInteractor: Interactor, HomeBusinessLogic {
+final class CityListInteractor: Interactor, CityListBusinessLogic {
    
     // MARK: - Properties
 
-    var presenter: HomePresentationLogic?
-    var router: HomeRoutingLogic?
-    let worker = HomeWorker()
+    var presenter: CityListPresentationLogic?
+    var router: CityListRoutingLogic?
+    let worker = CityListWorker()
 
     // MARK: - Business Logic
 
-    func requestSomething(request: Home.SomeUseCase.Request) {
+    func requestSomething(request: CityList.SomeUseCase.Request) {
         let response = worker.doSomeWork()
 
         if response {
-            presenter?.presentSuccess(response: Home.SomeUseCase.Response())
+            presenter?.presentSuccess(response: CityList.SomeUseCase.Response())
         } else {
             presenter?.presentFailure(message: "Error in response")
         }

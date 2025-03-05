@@ -1,8 +1,8 @@
 //
-//  HomeEntity.swift
+//  CityListEntity.swift
 //  MyCitiesChallenge
 //
-//  Created by Alejandro isai Acosta Martinez on 04/03/25.
+//  Created by Alejandro isai Acosta Martinez on 05/03/25.
 //  Copyright (c) 2025 ___ORGANIZATIONNAME___. All rights reserved.
 //
 //  Entities are simply our models that the interactor uses through
@@ -14,7 +14,7 @@
 
 import Foundation
 
-enum Home {
+enum CityList {
     
     // MARK: - Use cases
 

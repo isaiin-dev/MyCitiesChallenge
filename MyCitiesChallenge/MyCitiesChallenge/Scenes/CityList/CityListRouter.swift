@@ -1,8 +1,8 @@
 //
-//  HomeRouter.swift
+//  CityListRouter.swift
 //  MyCitiesChallenge
 //
-//  Created by Alejandro isai Acosta Martinez on 04/03/25.
+//  Created by Alejandro isai Acosta Martinez on 05/03/25.
 //  Copyright (c) 2025 ___ORGANIZATIONNAME___. All rights reserved.
 //
 //  This layer is responsible for handling navigation logic: Pushing,
@@ -14,11 +14,11 @@
 
 import UIKit
 
-protocol HomeRoutingLogic {
+protocol CityListRoutingLogic {
     func routeToSomewhere()
 }
 
-final class HomeRouter: Router, HomeRoutingLogic {
+final class CityListRouter: Router, CityListRoutingLogic {
 
     weak var view: UIViewController?
 

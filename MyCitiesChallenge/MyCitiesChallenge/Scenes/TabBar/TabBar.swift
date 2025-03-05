@@ -17,7 +17,7 @@ class TabBarController: UITabBarController {
 
     private func setupTabs() {
         
-        let cityListVC = UIViewController()
+        let cityListVC = CityListBuilder.build()
         cityListVC.tabBarItem = UITabBarItem(
             title: "Cities",
             image: UIImage(systemName: "list.bullet"),

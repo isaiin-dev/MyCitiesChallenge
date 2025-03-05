@@ -1,8 +1,8 @@
 //
-//  HomeBuilder.swift
+//  CityListBuilder.swift
 //  MyCitiesChallenge
 //
-//  Created by Alejandro isai Acosta Martinez on 04/03/25.
+//  Created by Alejandro isai Acosta Martinez on 05/03/25.
 //  Copyright (c) 2025 ___ORGANIZATIONNAME___. All rights reserved.
 //
 //  The Builder is responsible for assembling the VIPER scene (Interactor,
@@ -14,12 +14,12 @@
 
 import UIKit
 
-enum HomeBuilder {
+enum CityListBuilder {
     static func build() -> UIViewController {
-        let viewController = HomeViewController()
-        let interactor = HomeInteractor()
-        let presenter = HomePresenter()
-        let router = HomeRouter()
+        let viewController = CityListViewController()
+        let interactor = CityListInteractor()
+        let presenter = CityListPresenter()
+        let router = CityListRouter()
 
         // Inject dependencies
         viewController.interactor = interactor

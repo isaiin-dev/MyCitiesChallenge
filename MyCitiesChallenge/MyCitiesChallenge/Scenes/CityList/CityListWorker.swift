@@ -1,8 +1,8 @@
 //
-//  HomeWorker.swift
+//  CityListWorker.swift
 //  MyCitiesChallenge
 //
-//  Created by Alejandro isai Acosta Martinez on 04/03/25.
+//  Created by Alejandro isai Acosta Martinez on 05/03/25.
 //  Copyright (c) 2025 ___ORGANIZATIONNAME___. All rights reserved.
 //
 //  This file is where we will have direct access to our network layer
@@ -15,7 +15,7 @@
 
 import Foundation
 
-final class HomeWorker {
+final class CityListWorker {
 
     func doSomeWork() -> Bool {
         // Example of a simple operation. 
