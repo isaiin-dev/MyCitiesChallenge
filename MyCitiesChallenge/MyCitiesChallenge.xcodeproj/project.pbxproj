@@ -1,0 +1,570 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		D4963DC72D77DF3600F8FC2D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4963DA82D77DF3400F8FC2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4963DAF2D77DF3400F8FC2D;
+			remoteInfo = MyCitiesChallenge;
+		};
+		D4963DD12D77DF3600F8FC2D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4963DA82D77DF3400F8FC2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4963DAF2D77DF3400F8FC2D;
+			remoteInfo = MyCitiesChallenge;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D4963DB02D77DF3400F8FC2D /* MyCitiesChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCitiesChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4963DC62D77DF3600F8FC2D /* MyCitiesChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyCitiesChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4963DD02D77DF3600F8FC2D /* MyCitiesChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyCitiesChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D4963DD82D77DF3600F8FC2D /* Exceptions for "MyCitiesChallenge" folder in "MyCitiesChallenge" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D4963DAF2D77DF3400F8FC2D /* MyCitiesChallenge */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		D4963DB22D77DF3400F8FC2D /* MyCitiesChallenge */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D4963DD82D77DF3600F8FC2D /* Exceptions for "MyCitiesChallenge" folder in "MyCitiesChallenge" target */,
+			);
+			path = MyCitiesChallenge;
+			sourceTree = "<group>";
+		};
+		D4963DC92D77DF3600F8FC2D /* MyCitiesChallengeTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MyCitiesChallengeTests;
+			sourceTree = "<group>";
+		};
+		D4963DD32D77DF3600F8FC2D /* MyCitiesChallengeUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MyCitiesChallengeUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D4963DAD2D77DF3400F8FC2D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4963DC32D77DF3600F8FC2D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4963DCD2D77DF3600F8FC2D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D4963DA72D77DF3400F8FC2D = {
+			isa = PBXGroup;
+			children = (
+				D4963DB22D77DF3400F8FC2D /* MyCitiesChallenge */,
+				D4963DC92D77DF3600F8FC2D /* MyCitiesChallengeTests */,
+				D4963DD32D77DF3600F8FC2D /* MyCitiesChallengeUITests */,
+				D4963DB12D77DF3400F8FC2D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D4963DB12D77DF3400F8FC2D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D4963DB02D77DF3400F8FC2D /* MyCitiesChallenge.app */,
+				D4963DC62D77DF3600F8FC2D /* MyCitiesChallengeTests.xctest */,
+				D4963DD02D77DF3600F8FC2D /* MyCitiesChallengeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D4963DAF2D77DF3400F8FC2D /* MyCitiesChallenge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4963DD92D77DF3600F8FC2D /* Build configuration list for PBXNativeTarget "MyCitiesChallenge" */;
+			buildPhases = (
+				D4963DAC2D77DF3400F8FC2D /* Sources */,
+				D4963DAD2D77DF3400F8FC2D /* Frameworks */,
+				D4963DAE2D77DF3400F8FC2D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D4963DB22D77DF3400F8FC2D /* MyCitiesChallenge */,
+			);
+			name = MyCitiesChallenge;
+			packageProductDependencies = (
+			);
+			productName = MyCitiesChallenge;
+			productReference = D4963DB02D77DF3400F8FC2D /* MyCitiesChallenge.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D4963DC52D77DF3600F8FC2D /* MyCitiesChallengeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4963DDE2D77DF3600F8FC2D /* Build configuration list for PBXNativeTarget "MyCitiesChallengeTests" */;
+			buildPhases = (
+				D4963DC22D77DF3600F8FC2D /* Sources */,
+				D4963DC32D77DF3600F8FC2D /* Frameworks */,
+				D4963DC42D77DF3600F8FC2D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D4963DC82D77DF3600F8FC2D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D4963DC92D77DF3600F8FC2D /* MyCitiesChallengeTests */,
+			);
+			name = MyCitiesChallengeTests;
+			packageProductDependencies = (
+			);
+			productName = MyCitiesChallengeTests;
+			productReference = D4963DC62D77DF3600F8FC2D /* MyCitiesChallengeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D4963DCF2D77DF3600F8FC2D /* MyCitiesChallengeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4963DE12D77DF3600F8FC2D /* Build configuration list for PBXNativeTarget "MyCitiesChallengeUITests" */;
+			buildPhases = (
+				D4963DCC2D77DF3600F8FC2D /* Sources */,
+				D4963DCD2D77DF3600F8FC2D /* Frameworks */,
+				D4963DCE2D77DF3600F8FC2D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D4963DD22D77DF3600F8FC2D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D4963DD32D77DF3600F8FC2D /* MyCitiesChallengeUITests */,
+			);
+			name = MyCitiesChallengeUITests;
+			packageProductDependencies = (
+			);
+			productName = MyCitiesChallengeUITests;
+			productReference = D4963DD02D77DF3600F8FC2D /* MyCitiesChallengeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D4963DA82D77DF3400F8FC2D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					D4963DAF2D77DF3400F8FC2D = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					D4963DC52D77DF3600F8FC2D = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = D4963DAF2D77DF3400F8FC2D;
+					};
+					D4963DCF2D77DF3600F8FC2D = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = D4963DAF2D77DF3400F8FC2D;
+					};
+				};
+			};
+			buildConfigurationList = D4963DAB2D77DF3400F8FC2D /* Build configuration list for PBXProject "MyCitiesChallenge" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D4963DA72D77DF3400F8FC2D;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = D4963DB12D77DF3400F8FC2D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D4963DAF2D77DF3400F8FC2D /* MyCitiesChallenge */,
+				D4963DC52D77DF3600F8FC2D /* MyCitiesChallengeTests */,
+				D4963DCF2D77DF3600F8FC2D /* MyCitiesChallengeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D4963DAE2D77DF3400F8FC2D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4963DC42D77DF3600F8FC2D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4963DCE2D77DF3600F8FC2D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D4963DAC2D77DF3400F8FC2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4963DC22D77DF3600F8FC2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4963DCC2D77DF3600F8FC2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D4963DC82D77DF3600F8FC2D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4963DAF2D77DF3400F8FC2D /* MyCitiesChallenge */;
+			targetProxy = D4963DC72D77DF3600F8FC2D /* PBXContainerItemProxy */;
+		};
+		D4963DD22D77DF3600F8FC2D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4963DAF2D77DF3400F8FC2D /* MyCitiesChallenge */;
+			targetProxy = D4963DD12D77DF3600F8FC2D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D4963DDA2D77DF3600F8FC2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZB68B8Y4GV;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MyCitiesChallenge/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.isaiin-dev.MyCitiesChallenge";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D4963DDB2D77DF3600F8FC2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZB68B8Y4GV;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MyCitiesChallenge/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.isaiin-dev.MyCitiesChallenge";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D4963DDC2D77DF3600F8FC2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D4963DDD2D77DF3600F8FC2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D4963DDF2D77DF3600F8FC2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZB68B8Y4GV;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.isaiin-dev.MyCitiesChallengeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyCitiesChallenge.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MyCitiesChallenge";
+			};
+			name = Debug;
+		};
+		D4963DE02D77DF3600F8FC2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZB68B8Y4GV;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.isaiin-dev.MyCitiesChallengeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyCitiesChallenge.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MyCitiesChallenge";
+			};
+			name = Release;
+		};
+		D4963DE22D77DF3600F8FC2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZB68B8Y4GV;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.isaiin-dev.MyCitiesChallengeUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MyCitiesChallenge;
+			};
+			name = Debug;
+		};
+		D4963DE32D77DF3600F8FC2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZB68B8Y4GV;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.isaiin-dev.MyCitiesChallengeUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MyCitiesChallenge;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D4963DAB2D77DF3400F8FC2D /* Build configuration list for PBXProject "MyCitiesChallenge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4963DDC2D77DF3600F8FC2D /* Debug */,
+				D4963DDD2D77DF3600F8FC2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4963DD92D77DF3600F8FC2D /* Build configuration list for PBXNativeTarget "MyCitiesChallenge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4963DDA2D77DF3600F8FC2D /* Debug */,
+				D4963DDB2D77DF3600F8FC2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4963DDE2D77DF3600F8FC2D /* Build configuration list for PBXNativeTarget "MyCitiesChallengeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4963DDF2D77DF3600F8FC2D /* Debug */,
+				D4963DE02D77DF3600F8FC2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4963DE12D77DF3600F8FC2D /* Build configuration list for PBXNativeTarget "MyCitiesChallengeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4963DE22D77DF3600F8FC2D /* Debug */,
+				D4963DE32D77DF3600F8FC2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D4963DA82D77DF3400F8FC2D /* Project object */;
+}
