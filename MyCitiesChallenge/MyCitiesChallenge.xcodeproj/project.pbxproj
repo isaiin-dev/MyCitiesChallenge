@@ -37,6 +37,20 @@
 			);
 			target = D4963DAF2D77DF3400F8FC2D /* MyCitiesChallenge */;
 		};
+		D4ECA0652D7826BF004A846D /* Exceptions for "MyCitiesChallenge" folder in "MyCitiesChallengeTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Resources/cities.json,
+			);
+			target = D4963DC52D77DF3600F8FC2D /* MyCitiesChallengeTests */;
+		};
+		D4ECA0662D7826BF004A846D /* Exceptions for "MyCitiesChallenge" folder in "MyCitiesChallengeUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Resources/cities.json,
+			);
+			target = D4963DCF2D77DF3600F8FC2D /* MyCitiesChallengeUITests */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -44,6 +58,8 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				D4963DD82D77DF3600F8FC2D /* Exceptions for "MyCitiesChallenge" folder in "MyCitiesChallenge" target */,
+				D4ECA0652D7826BF004A846D /* Exceptions for "MyCitiesChallenge" folder in "MyCitiesChallengeTests" target */,
+				D4ECA0662D7826BF004A846D /* Exceptions for "MyCitiesChallenge" folder in "MyCitiesChallengeUITests" target */,
 			);
 			path = MyCitiesChallenge;
 			sourceTree = "<group>";
