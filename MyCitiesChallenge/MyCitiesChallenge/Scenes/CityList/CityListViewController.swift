@@ -35,16 +35,9 @@ class CityListViewController: UIViewController {
     
     private let  citiesRepository = CitiesRepository()
     
-    // MARK: - Subviews
+    private let loadingOverlay = LoadingOverlayView()
     
-    /// A blurred overlay view for showing loading status.
-    private lazy var loadingOverlay: UIVisualEffectView = {
-        let blurEffect = UIBlurEffect(style: .light)
-        let overlay = UIVisualEffectView(effect: blurEffect)
-        overlay.translatesAutoresizingMaskIntoConstraints = false
-        overlay.alpha = 0.8
-        return overlay
-    }()
+    // MARK: - Subviews
     
     /// UISearchController for cities search and filtering
     private lazy var searchController: UISearchController = {
