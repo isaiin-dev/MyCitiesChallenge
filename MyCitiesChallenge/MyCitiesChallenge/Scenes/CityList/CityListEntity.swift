@@ -16,11 +16,68 @@ import Foundation
 
 enum CityList {
     
-    // MARK: - Use cases
-
-    enum SomeUseCase {
-        struct Request: Codable {}
-        struct Response: Codable {}
-        struct ViewModel: Codable {}
+    // MARK: - Use Cases
+    
+    /// Use case for loading all cities from the JSON dataset.
+    enum LoadCities {
+        struct Request { }
+        
+        /// The raw data received from the repository/interactor
+        struct Response {
+            let cities: [City]
+        }
+        
+        /// The formatted data presented to the UI
+        struct ViewModel {
+            let displayCities: [DisplayCity]
+        }
+    }
+    
+    /// Use case for searching cities by a given prefix or query.
+    enum SearchCities {
+        struct Request {
+            let query: String
+        }
+        
+        struct Response {
+            let filteredCities: [City]
+        }
+        
+        struct ViewModel {
+            let displayCities: [DisplayCity]
+        }
+    }
+    
+    // MARK: - Entities
+    
+    /// Represents a city object parsed from the JSON dataset.
+    struct City: Codable {
+        let country: String
+        let name: String
+        let id: Int
+        let coord: Coord
+        
+        // Map the "_id" key from the JSON to "id" in Swift
+        enum CodingKeys: String, CodingKey {
+            case country
+            case name
+            case id = "_id"
+            case coord
+        }
+    }
+    
+    /// Nested struct to handle the coordinates of a city.
+    struct Coord: Codable {
+        let lon: Double
+        let lat: Double
+    }
+    
+    // MARK: - Display Models
+    
+    /// A lightweight struct for the View to display city data (if needed).
+    /// You might use it for formatted strings or localized content.
+    struct DisplayCity {
+        let title: String
+        let subtitle: String
     }
 }

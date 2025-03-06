@@ -36,6 +36,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.backgroundColor = .white
+        window?.overrideUserInterfaceStyle = .light
         window?.windowScene = windowScene
         
         let tabBarController = TabBarController()

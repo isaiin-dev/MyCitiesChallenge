@@ -16,7 +16,9 @@
 import UIKit
 
 protocol CityListDisplayLogic: ViewLayer {
-    func displaySomething(viewModel: CityList.SomeUseCase.ViewModel)
+    func showLoadingIndicator()
+    func hideLoadingIndicator()
+    func displayCities()
     func displayFailure(message: String)
 }
 
@@ -31,15 +33,26 @@ class CityListViewController: UIViewController {
     private var portraitConstraints: [NSLayoutConstraint] = []
     private var landscapeConstraints: [NSLayoutConstraint] = []
     
+    private let  citiesRepository = CitiesRepository()
+    
     // MARK: - Subviews
     
-    /// UISearchBar for entering city names with real-time search updates.
-    private lazy var searchBar: UISearchBar = {
-        let sb = UISearchBar()
-        sb.placeholder = "Search for cities..."
-        sb.translatesAutoresizingMaskIntoConstraints = false
-        sb.delegate = self
-        return sb
+    /// A blurred overlay view for showing loading status.
+    private lazy var loadingOverlay: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .light)
+        let overlay = UIVisualEffectView(effect: blurEffect)
+        overlay.translatesAutoresizingMaskIntoConstraints = false
+        overlay.alpha = 0.8
+        return overlay
+    }()
+    
+    /// UISearchController for cities search and filtering
+    private lazy var searchController: UISearchController = {
+        let sc = UISearchController(searchResultsController: nil)
+        sc.searchResultsUpdater = self
+        sc.obscuresBackgroundDuringPresentation = false
+        sc.searchBar.placeholder = "Search for cities..."
+        return sc
     }()
     
     /// UITableView to display the list of filtered city results.
@@ -78,8 +91,8 @@ class CityListViewController: UIViewController {
         setupConstraints()
         updateLayoutForCurrentOrientation()
         
-        // Example call to interactor (replace with actual business logic call)
-        interactor?.userInteractionInSomewhere()
+        showLoadingIndicator()
+        interactor?.loadCities(request: CityList.LoadCities.Request())
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -94,10 +107,14 @@ class CityListViewController: UIViewController {
     
     /// Configures the view by adding subviews and setting the background color.
     private func setupView() {
+        self.title = "Cities"
         view.backgroundColor = .white
         
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
+        
         // Add subviews to the main view
-        view.addSubview(searchBar)
         view.addSubview(tableView)
         view.addSubview(mapPlaceholderView)
     }
@@ -105,22 +122,14 @@ class CityListViewController: UIViewController {
     /// Sets up the Auto Layout constraints for both portrait and landscape orientations.
     private func setupConstraints() {
         portraitConstraints = [
-            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
-            tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         
         landscapeConstraints = [
-            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            searchBar.trailingAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.centerXAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -161,10 +170,10 @@ class CityListViewController: UIViewController {
     }
 }
 
-// MARK: - UISearchBarDelegate
-extension CityListViewController: UISearchBarDelegate {
-    /// Called when the text in the search bar changes. Updates the table view for real-time search.
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+// MARK: - UISearchResultsUpdating
+extension CityListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let query = searchController.searchBar.text else { return }
         tableView.reloadData()
     }
 }
@@ -185,18 +194,34 @@ extension CityListViewController: UITableViewDataSource, UITableViewDelegate {
     
     /// Called when a table row is selected. Notifies the interactor about the selection.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        interactor?.userInteractionInSomewhere() 
+        //interactor?.userInteractionInSomewhere()
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 // MARK: - Display Logic
 
 extension CityListViewController: CityListDisplayLogic {
-    func displaySomething(viewModel: CityList.SomeUseCase.ViewModel) {
-        // Update the UI with the data from the viewModel
+    func showLoadingIndicator() {
+        view.addSubview(loadingOverlay)
+        NSLayoutConstraint.activate([
+            loadingOverlay.topAnchor.constraint(equalTo: view.topAnchor),
+            loadingOverlay.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            loadingOverlay.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loadingOverlay.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
-
+    
+    func hideLoadingIndicator() {
+        loadingOverlay.removeFromSuperview()
+    }
+    
+    func displayCities() {
+        hideLoadingIndicator()
+        print("Cities succesfully loaded")
+    }
+    
     func displayFailure(message: String) {
+        hideLoadingIndicator()
         print("Something went wrong: \(message)")
     }
 }

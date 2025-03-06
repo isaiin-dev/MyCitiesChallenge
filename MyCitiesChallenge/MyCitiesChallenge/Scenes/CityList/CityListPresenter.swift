@@ -17,7 +17,7 @@
 import Foundation
 
 protocol CityListPresentationLogic {
-    func presentSuccess(response: CityList.SomeUseCase.Response)
+    func presentCities()
     func presentFailure(message: String)
 }
 
@@ -29,9 +29,8 @@ final class CityListPresenter: Presenter, CityListPresentationLogic {
 
     // MARK: - Presentation Logic
 
-    func presentSuccess(response: CityList.SomeUseCase.Response) {
-        let viewModel = CityList.SomeUseCase.ViewModel()
-        view?.displaySomething(viewModel: viewModel)
+    func presentCities() {
+        view?.displayCities()
     }
 
     func presentFailure(message: String) {

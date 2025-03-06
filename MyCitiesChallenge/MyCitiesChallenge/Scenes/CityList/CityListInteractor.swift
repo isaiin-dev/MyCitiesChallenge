@@ -16,8 +16,7 @@
 import Foundation
 
 protocol CityListBusinessLogic {
-    func requestSomething(request: CityList.SomeUseCase.Request)
-    func userInteractionInSomewhere()
+    func loadCities(request: CityList.LoadCities.Request)
 }
 
 final class CityListInteractor: Interactor, CityListBusinessLogic {
@@ -27,22 +26,21 @@ final class CityListInteractor: Interactor, CityListBusinessLogic {
     var presenter: CityListPresentationLogic?
     var router: CityListRoutingLogic?
     let worker = CityListWorker()
+    
+    private let repository: CitiesRepositoryProtocol = CitiesRepository()
 
     // MARK: - Business Logic
 
-    func requestSomething(request: CityList.SomeUseCase.Request) {
-        let response = worker.doSomeWork()
-
-        if response {
-            presenter?.presentSuccess(response: CityList.SomeUseCase.Response())
-        } else {
-            presenter?.presentFailure(message: "Error in response")
+    func loadCities(request: CityList.LoadCities.Request) {
+        repository.loadCitiesIfNeeded { [weak self] success in
+            if success {
+                self?.presenter?.presentCities()
+            } else {
+                self?.presenter?.presentFailure(message: "Failed to load cities")
+            }
         }
     }
 
     // MARK: - Routing Logic
 
-    func userInteractionInSomewhere() {
-        router?.routeToSomewhere()
-    }
 }
