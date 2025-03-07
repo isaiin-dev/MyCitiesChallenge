@@ -18,6 +18,7 @@ import Foundation
 
 protocol CityListPresentationLogic {
     func presentCities(cities: CityList.LoadCities.Response)
+    func presentFilteredCities(cities: CityList.SearchCities.Response)
     func presentFailure(message: String)
 }
 
@@ -35,5 +36,9 @@ final class CityListPresenter: Presenter, CityListPresentationLogic {
 
     func presentFailure(message: String) {
         view?.displayFailure(message: message)
+    }
+    
+    func presentFilteredCities(cities: CityList.SearchCities.Response) {
+        view?.displayFilteredCities(cities: cities)
     }
 }

@@ -18,6 +18,7 @@ import Foundation
 protocol CityListBusinessLogic {
     func loadCities(request: CityList.LoadCities.Request)
     func fetchCitiesPage(request: CityList.FetchPage.Request)
+    func searchCitiesByPrefix(_ prefix: String)
 }
 
 final class CityListInteractor: Interactor, CityListBusinessLogic {
@@ -58,6 +59,11 @@ final class CityListInteractor: Interactor, CityListBusinessLogic {
                 }
             }
         }
+    }
+    
+    func searchCitiesByPrefix(_ prefix: String) {
+        let filtered = repository.searchCities(prefix: prefix)
+        presenter?.presentFilteredCities(cities: CityList.SearchCities.Response(filteredCities: filtered))
     }
 
     // MARK: - Routing Logic

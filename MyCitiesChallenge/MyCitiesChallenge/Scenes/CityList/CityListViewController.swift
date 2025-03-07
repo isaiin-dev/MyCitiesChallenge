@@ -19,6 +19,7 @@ protocol CityListDisplayLogic: ViewLayer {
     func showLoadingIndicator()
     func hideLoadingIndicator()
     func displayCities(cities: CityList.LoadCities.Response)
+    func displayFilteredCities(cities: CityList.SearchCities.Response)
     func displayFailure(message: String)
 }
 
@@ -37,12 +38,13 @@ class CityListViewController: UIViewController {
     private let pageSize = 20                          
     private var currentPage = 0
     private var isPaginating = false
+    private var isFiltering = false
 
     
     private var portraitConstraints: [NSLayoutConstraint] = []
     private var landscapeConstraints: [NSLayoutConstraint] = []
     
-    private let  citiesRepository = CitiesRepository()
+    private let citiesRepository = CitiesRepository()
     
     private let loadingOverlay = LoadingOverlayView()
     
@@ -52,6 +54,7 @@ class CityListViewController: UIViewController {
     private lazy var searchController: UISearchController = {
         let sc = UISearchController(searchResultsController: nil)
         sc.searchResultsUpdater = self
+        sc.searchBar.delegate = self
         sc.obscuresBackgroundDuringPresentation = false
         sc.searchBar.placeholder = "Search for cities..."
         return sc
@@ -93,8 +96,6 @@ class CityListViewController: UIViewController {
         setupConstraints()
         updateLayoutForCurrentOrientation()
         
-        //showLoadingIndicator()
-        //interactor?.loadCities(request: CityList.LoadCities.Request())
         loadNextPage()
     }
     
@@ -193,7 +194,23 @@ class CityListViewController: UIViewController {
 extension CityListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let query = searchController.searchBar.text else { return }
-        tableView.reloadData()
+        
+        if query.isEmpty {
+            isFiltering = false
+            loadNextPage()
+        } else {
+            isFiltering = true
+            interactor?.searchCitiesByPrefix(query)
+        }
+    }
+}
+
+// MARK: - UISearchBarDelegate
+extension CityListViewController: UISearchBarDelegate {
+    /// Restore paginated data when search is cancelled.
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isFiltering = false
+        loadNextPage()
     }
 }
 
@@ -223,7 +240,7 @@ extension CityListViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == cities.count - 1 && !isPaginating {
+        if indexPath.row == cities.count - 1 && !isPaginating && !isFiltering {
             loadNextPage()
         }
     }
@@ -251,6 +268,11 @@ extension CityListViewController: CityListDisplayLogic {
         currentPage += 1
         isPaginating = false
         print("Cities succesfully loaded")
+    }
+    
+    func displayFilteredCities(cities: CityList.SearchCities.Response) {
+        hideLoadingIndicator()
+        self.cities = cities.filteredCities
     }
     
     func displayFailure(message: String) {
