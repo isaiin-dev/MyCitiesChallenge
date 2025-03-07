@@ -14,6 +14,7 @@
 //
 
 import UIKit
+import MapKit
 
 protocol CityListDisplayLogic: ViewLayer {
     func showLoadingIndicator()
@@ -32,6 +33,7 @@ class CityListViewController: UIViewController {
     private var cities = [CityList.City]() {
         didSet {
             self.tableView.reloadData()
+            updateMapAnnotations()
         }
     }
 
@@ -70,12 +72,11 @@ class CityListViewController: UIViewController {
         return tv
     }()
     
-    /// A placeholder UIView with a blue background representing a map view in landscape orientation.
-    private lazy var mapPlaceholderView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .blue
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    /// Lazy initialization for the map view to display city annotations.
+    private lazy var mapView: MKMapView = {
+        let map = MKMapView()
+        map.translatesAutoresizingMaskIntoConstraints = false
+        return map
     }()
     
     // MARK: - Object Lifecycle
@@ -120,7 +121,7 @@ class CityListViewController: UIViewController {
         
         // Add subviews to the main view
         view.addSubview(tableView)
-        view.addSubview(mapPlaceholderView)
+        view.addSubview(mapView)
     }
     
     /// Sets up the Auto Layout constraints for both portrait and landscape orientations.
@@ -138,10 +139,10 @@ class CityListViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.centerXAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            mapPlaceholderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            mapPlaceholderView.leadingAnchor.constraint(equalTo: view.centerXAnchor),
-            mapPlaceholderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mapPlaceholderView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            mapView.leadingAnchor.constraint(equalTo: view.centerXAnchor),
+            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
     }
     
@@ -150,11 +151,11 @@ class CityListViewController: UIViewController {
         if view.bounds.width > view.bounds.height {
             NSLayoutConstraint.deactivate(portraitConstraints)
             NSLayoutConstraint.activate(landscapeConstraints)
-            mapPlaceholderView.isHidden = false
+            mapView.isHidden = false
         } else {
             NSLayoutConstraint.deactivate(landscapeConstraints)
             NSLayoutConstraint.activate(portraitConstraints)
-            mapPlaceholderView.isHidden = true
+            mapView.isHidden = true
         }
     }
     
@@ -164,11 +165,11 @@ class CityListViewController: UIViewController {
         if size.width > size.height {
             NSLayoutConstraint.deactivate(portraitConstraints)
             NSLayoutConstraint.activate(landscapeConstraints)
-            mapPlaceholderView.isHidden = false
+            mapView.isHidden = false
         } else {
             NSLayoutConstraint.deactivate(landscapeConstraints)
             NSLayoutConstraint.activate(portraitConstraints)
-            mapPlaceholderView.isHidden = true
+            mapView.isHidden = true
         }
         view.layoutIfNeeded()
     }
@@ -188,6 +189,23 @@ class CityListViewController: UIViewController {
                 pageSize: pageSize,
                 offset: offset))
     }
+    
+    /// Updates the map view annotations based on the currently displayed cities.
+    private func updateMapAnnotations() {
+        mapView.removeAnnotations(mapView.annotations)
+        
+        for city in cities {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2D(latitude: city.coord.lat, longitude: city.coord.lon)
+            annotation.title = "\(city.name), \(city.country)"
+            mapView.addAnnotation(annotation)
+        }
+        
+        if !mapView.annotations.isEmpty {
+            mapView.showAnnotations(mapView.annotations, animated: true)
+        }
+    }
+
 }
 
 // MARK: - UISearchResultsUpdating
