@@ -18,7 +18,7 @@ import UIKit
 protocol CityListDisplayLogic: ViewLayer {
     func showLoadingIndicator()
     func hideLoadingIndicator()
-    func displayCities()
+    func displayCities(cities: CityList.LoadCities.Response)
     func displayFailure(message: String)
 }
 
@@ -28,7 +28,16 @@ class CityListViewController: UIViewController {
     
     var interactor: CityListBusinessLogic?
     
-    private var cities: [String] = ["City 1", "City 2", "City 3", "City 4"]
+    private var cities = [CityList.City]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+
+    private let pageSize = 20                          
+    private var currentPage = 0
+    private var isPaginating = false
+
     
     private var portraitConstraints: [NSLayoutConstraint] = []
     private var landscapeConstraints: [NSLayoutConstraint] = []
@@ -54,7 +63,7 @@ class CityListViewController: UIViewController {
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.dataSource = self
         tv.delegate = self
-        tv.register(UITableViewCell.self, forCellReuseIdentifier: "CityCell")
+        tv.register(CityTableViewCell.self, forCellReuseIdentifier: CityTableViewCell.IDENTIFIER)
         return tv
     }()
     
@@ -84,8 +93,9 @@ class CityListViewController: UIViewController {
         setupConstraints()
         updateLayoutForCurrentOrientation()
         
-        showLoadingIndicator()
-        interactor?.loadCities(request: CityList.LoadCities.Request())
+        //showLoadingIndicator()
+        //interactor?.loadCities(request: CityList.LoadCities.Request())
+        loadNextPage()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -161,6 +171,22 @@ class CityListViewController: UIViewController {
         }
         view.layoutIfNeeded()
     }
+    
+    private func loadNextPage() {
+        guard !isPaginating else {
+            return
+        }
+        
+        isPaginating = true
+        showLoadingIndicator()
+        
+        let offset = currentPage * pageSize
+        
+        interactor?.fetchCitiesPage(
+            request: CityList.FetchPage.Request(
+                pageSize: pageSize,
+                offset: offset))
+    }
 }
 
 // MARK: - UISearchResultsUpdating
@@ -180,8 +206,13 @@ extension CityListViewController: UITableViewDataSource, UITableViewDelegate {
     
     /// Configures and returns a cell for the given row index.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath)
-        cell.textLabel?.text = cities[indexPath.row]
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: CityTableViewCell.IDENTIFIER, for: indexPath) as? CityTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        let city = cities[indexPath.row]
+        cell.city = city
+        
         return cell
     }
     
@@ -189,6 +220,12 @@ extension CityListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //interactor?.userInteractionInSomewhere()
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == cities.count - 1 && !isPaginating {
+            loadNextPage()
+        }
     }
 }
 // MARK: - Display Logic
@@ -208,13 +245,17 @@ extension CityListViewController: CityListDisplayLogic {
         loadingOverlay.removeFromSuperview()
     }
     
-    func displayCities() {
+    func displayCities(cities: CityList.LoadCities.Response) {
         hideLoadingIndicator()
+        self.cities.append(contentsOf: cities.cities)
+        currentPage += 1
+        isPaginating = false
         print("Cities succesfully loaded")
     }
     
     func displayFailure(message: String) {
         hideLoadingIndicator()
+        isPaginating = false
         print("Something went wrong: \(message)")
     }
 }

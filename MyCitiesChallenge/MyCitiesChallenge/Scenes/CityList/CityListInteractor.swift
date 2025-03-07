@@ -17,6 +17,7 @@ import Foundation
 
 protocol CityListBusinessLogic {
     func loadCities(request: CityList.LoadCities.Request)
+    func fetchCitiesPage(request: CityList.FetchPage.Request)
 }
 
 final class CityListInteractor: Interactor, CityListBusinessLogic {
@@ -34,9 +35,27 @@ final class CityListInteractor: Interactor, CityListBusinessLogic {
     func loadCities(request: CityList.LoadCities.Request) {
         repository.loadCitiesIfNeeded { [weak self] success in
             if success {
-                self?.presenter?.presentCities()
+                let response = CityList.LoadCities.Response(cities: self?.repository.loadedCities ?? [])
+                self?.presenter?.presentCities(cities: response)
             } else {
                 self?.presenter?.presentFailure(message: "Failed to load cities")
+            }
+        }
+    }
+    
+    func fetchCitiesPage(request: CityList.FetchPage.Request) {
+        repository.loadCitiesIfNeeded { [weak self] success in
+            guard let self = self else { return }
+            if success {
+                let cities = self.repository.fetchPage(pageSize: request.pageSize, offset: request.offset)
+                let response = CityList.FetchPage.Response(cities: cities)
+                DispatchQueue.main.async {
+                    self.presenter?.presentCities(cities: CityList.LoadCities.Response(cities: response.cities))
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.presenter?.presentFailure(message: "Failed to load cities.")
+                }
             }
         }
     }

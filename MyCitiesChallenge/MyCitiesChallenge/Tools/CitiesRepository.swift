@@ -24,6 +24,9 @@ protocol CitiesRepositoryProtocol {
     ///   - offset: The starting index of the page.
     /// - Returns: An array of CityList.City objects for the requested page.
     func fetchPage(pageSize: Int, offset: Int) -> [CityList.City]
+    
+    /// Add a read-only property for accessing loaded cities
+    var loadedCities: [CityList.City] { get }
 }
 
 /// A repository responsible for loading and searching cities from the bundled JSON file.
@@ -144,3 +147,10 @@ extension Array where Element == CityList.City {
         return low
     }
 }
+
+extension CitiesRepository {
+    var loadedCities: [CityList.City] {
+        return cities
+    }
+}
+

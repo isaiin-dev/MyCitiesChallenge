@@ -18,6 +18,23 @@ enum CityList {
     
     // MARK: - Use Cases
     
+    /// Use case for fetching cities by page from the JSON dataset.
+    enum FetchPage {
+        struct Request {
+            let pageSize: Int
+            let offset: Int
+        }
+        
+        struct Response {
+            let cities: [CityList.City]
+        }
+        
+        struct ViewModel {
+            let cities: [CityList.City]
+        }
+    }
+
+    
     /// Use case for loading all cities from the JSON dataset.
     enum LoadCities {
         struct Request { }
