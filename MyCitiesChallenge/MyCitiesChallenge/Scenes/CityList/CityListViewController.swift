@@ -253,8 +253,8 @@ extension CityListViewController: UITableViewDataSource, UITableViewDelegate {
     
     /// Called when a table row is selected. Notifies the interactor about the selection.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //interactor?.userInteractionInSomewhere()
-        tableView.deselectRow(at: indexPath, animated: true)
+        let selectedCity = cities[indexPath.row]
+        interactor?.goToCityDetail(city: selectedCity)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

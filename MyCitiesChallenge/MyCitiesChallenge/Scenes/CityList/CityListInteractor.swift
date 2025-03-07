@@ -19,6 +19,7 @@ protocol CityListBusinessLogic {
     func loadCities(request: CityList.LoadCities.Request)
     func fetchCitiesPage(request: CityList.FetchPage.Request)
     func searchCitiesByPrefix(_ prefix: String)
+    func goToCityDetail(city: CityList.City)
 }
 
 final class CityListInteractor: Interactor, CityListBusinessLogic {
@@ -68,4 +69,7 @@ final class CityListInteractor: Interactor, CityListBusinessLogic {
 
     // MARK: - Routing Logic
 
+    func goToCityDetail(city: CityList.City) {
+        router?.routeToCityDetail(city: city)
+    }
 }

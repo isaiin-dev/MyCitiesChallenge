@@ -15,17 +15,15 @@
 import UIKit
 
 protocol CityListRoutingLogic {
-    func routeToSomewhere()
+    func routeToCityDetail(city: CityList.City)
 }
 
 final class CityListRouter: Router, CityListRoutingLogic {
 
     weak var view: UIViewController?
 
-    func routeToSomewhere() {
-        // Implement navigation logic here
-        // Example:
-        // let destinationVC = SomeViewController()
-        // view?.navigationController?.pushViewController(destinationVC, animated: true)
+    func routeToCityDetail(city: CityList.City) {
+        let detailVC = CityDetailViewController(city: city)
+        view?.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
