@@ -16,7 +16,7 @@
 import Foundation
 
 protocol FavoritesBusinessLogic {
-    func requestSomething(request: Favorites.SomeUseCase.Request)
+    func fetchFavorites()
     func userInteractionInSomewhere()
 }
 
@@ -27,17 +27,14 @@ final class FavoritesInteractor: Interactor, FavoritesBusinessLogic {
     var presenter: FavoritesPresentationLogic?
     var router: FavoritesRoutingLogic?
     let worker = FavoritesWorker()
+    
+    private let repository = CitiesRepository.shared
 
     // MARK: - Business Logic
 
-    func requestSomething(request: Favorites.SomeUseCase.Request) {
-        let response = worker.doSomeWork()
-
-        if response {
-            presenter?.presentSuccess(response: Favorites.SomeUseCase.Response())
-        } else {
-            presenter?.presentFailure(message: "Error in response")
-        }
+    func fetchFavorites() {
+        let favorites = repository.getFavorites()
+        presenter?.presentFavorites(cities: favorites)
     }
 
     // MARK: - Routing Logic

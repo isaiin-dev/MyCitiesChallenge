@@ -16,7 +16,7 @@
 import UIKit
 
 protocol FavoritesDisplayLogic: ViewLayer {
-    func displaySomething(viewModel: Favorites.SomeUseCase.ViewModel)
+    func displayFavorites(cities: [CityList.City])
     func displayFailure(message: String)
 }
 
@@ -25,7 +25,11 @@ class FavoritesViewController: UIViewController {
     // MARK: - Properties
 
     var interactor: FavoritesBusinessLogic?
-    private var favorites = [CityList.City]()
+    private var favorites = [CityList.City]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
 
     // MARK: - Subviews
     
@@ -56,9 +60,11 @@ class FavoritesViewController: UIViewController {
         super.viewDidLoad()
         self.setupView()
         self.setupConstraints()
-
-        // Example call to interactor
-        interactor?.userInteractionInSomewhere()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        interactor?.fetchFavorites()
     }
 
     // MARK: - Setup
@@ -100,6 +106,9 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         }
         let favoriteCity = favorites[indexPath.row]
         cell.city = favoriteCity
+        cell.favoriteChangedAction = { [weak self] in
+            self?.interactor?.fetchFavorites()
+        }
         return cell
     }
     
@@ -113,8 +122,8 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - Display Logic
 
 extension FavoritesViewController: FavoritesDisplayLogic {
-    func displaySomething(viewModel: Favorites.SomeUseCase.ViewModel) {
-        // Update the UI with the data from the viewModel
+    func displayFavorites(cities: [CityList.City]) {
+        self.favorites = cities
     }
 
     func displayFailure(message: String) {

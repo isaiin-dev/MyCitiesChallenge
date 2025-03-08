@@ -7,30 +7,10 @@
 
 import Foundation
 
-/// Protocol that defines the methods for loading and retrieving cities.
-protocol CitiesRepositoryProtocol {
-    /// Loads the cities from the JSON file if they haven't been loaded already.
-    /// - Parameter completion: A closure that is called on the main thread with a Bool indicating success.
-    func loadCitiesIfNeeded(completion: @escaping (Bool) -> Void)
-    
-    /// Searches for cities whose name starts with the given prefix.
-    /// - Parameter prefix: The prefix string to search.
-    /// - Returns: An array of matching CityList.City objects.
-    func searchCities(prefix: String) -> [CityList.City]
-    
-    /// Fetches a page of cities from the loaded dataset.
-    /// - Parameters:
-    ///   - pageSize: The number of cities per page.
-    ///   - offset: The starting index of the page.
-    /// - Returns: An array of CityList.City objects for the requested page.
-    func fetchPage(pageSize: Int, offset: Int) -> [CityList.City]
-    
-    /// Add a read-only property for accessing loaded cities
-    var loadedCities: [CityList.City] { get }
-}
-
 /// A repository responsible for loading and searching cities from the bundled JSON file.
-class CitiesRepository: CitiesRepositoryProtocol {
+class CitiesRepository {
+    
+    static let shared = CitiesRepository()
     
     // Background queue for loading and processing the JSON data.
     private let queue = DispatchQueue(label: "com.myCitiesChallenge.CitiesRepositoryQueue", qos: .userInitiated)
@@ -192,6 +172,11 @@ extension CitiesRepository {
     func getFavorites() -> [CityList.City] {
         let ids = getFavoriteIDs()
         return cities.filter { ids.contains($0.id) }
+    }
+    
+    /// Checks if the given city is marked as a favorite.
+    func isFavorite(city: CityList.City) -> Bool {
+        return getFavoriteIDs().contains(city.id)
     }
 }
 

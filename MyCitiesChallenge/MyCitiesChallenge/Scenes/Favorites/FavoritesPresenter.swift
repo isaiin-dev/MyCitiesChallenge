@@ -17,7 +17,7 @@
 import Foundation
 
 protocol FavoritesPresentationLogic {
-    func presentSuccess(response: Favorites.SomeUseCase.Response)
+    func presentFavorites(cities: [CityList.City])
     func presentFailure(message: String)
 }
 
@@ -29,9 +29,8 @@ final class FavoritesPresenter: Presenter, FavoritesPresentationLogic {
 
     // MARK: - Presentation Logic
 
-    func presentSuccess(response: Favorites.SomeUseCase.Response) {
-        let viewModel = Favorites.SomeUseCase.ViewModel()
-        view?.displaySomething(viewModel: viewModel)
+    func presentFavorites(cities: [CityList.City]) {
+        view?.displayFavorites(cities: cities)
     }
 
     func presentFailure(message: String) {
