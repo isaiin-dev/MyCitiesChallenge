@@ -31,6 +31,17 @@ class CitiesRepository {
             return
         }
         
+        // Check if the app is running UI tests.
+        if ProcessInfo.processInfo.arguments.contains("UI_TEST_MODE") {
+            self.cities = StubCities.cities.sorted { $0.name.lowercased() < $1.name.lowercased() }
+            self.isLoaded = true
+            DispatchQueue.main.async {
+                completion(true)
+            }
+            return
+        }
+        
+        // If not in UI test mode, load the full JSON.
         queue.async { [weak self] in
             guard let self = self else { return }
             if let path = Bundle.main.path(forResource: "cities", ofType: "json"),
