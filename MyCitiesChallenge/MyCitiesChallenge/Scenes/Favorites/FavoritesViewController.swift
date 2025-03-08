@@ -25,9 +25,20 @@ class FavoritesViewController: UIViewController {
     // MARK: - Properties
 
     var interactor: FavoritesBusinessLogic?
+    private var favorites = [CityList.City]()
 
     // MARK: - Subviews
-    // Place your UI components here (e.g., UILabels, UIButtons, etc.)
+    
+    /// Lazy initialization of the table view to display favorite cities.
+    private lazy var tableView: UITableView = {
+        let tv = UITableView()
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.dataSource = self
+        tv.delegate = self
+        tv.register(CityTableViewCell.self, forCellReuseIdentifier: CityTableViewCell.IDENTIFIER)
+        return tv
+    }()
+
 
     // MARK: - Object Lifecycle
 
@@ -53,22 +64,51 @@ class FavoritesViewController: UIViewController {
     // MARK: - Setup
 
     private func setupView() {
-        // Initialize and configure your subviews here
+        self.title = "Favorites"
+        view.backgroundColor = .white
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        view.addSubview(tableView)
     }
 
     private func setupConstraints() {
-        // Add and activate your constraints here
-        // Example:
-        // someView.translatesAutoresizingMaskIntoConstraints = false
-        // NSLayoutConstraint.activate([
-        //     someView.topAnchor.constraint(equalTo: view.topAnchor),
-        //     someView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-        //     ...
-        // ])
+        NSLayoutConstraint.activate([
+           tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+           tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+           tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+           tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
 
     // MARK: - Actions
 }
+
+// MARK: - UITableViewDataSource, UITableViewDelegate
+
+extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
+    /// Returns the number of favorite cities.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return favorites.count
+    }
+    
+    /// Configures and returns a cell for the favorite city at the given index.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: CityTableViewCell.IDENTIFIER,
+            for: indexPath) as? CityTableViewCell else {
+            return UITableViewCell()
+        }
+        let favoriteCity = favorites[indexPath.row]
+        cell.city = favoriteCity
+        return cell
+    }
+    
+    /// Handles selection of a favorite city cell.
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCity = favorites[indexPath.row]
+    }
+}
+
 
 // MARK: - Display Logic
 

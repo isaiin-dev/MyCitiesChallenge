@@ -26,7 +26,7 @@ class TabBarController: UITabBarController {
         let cityListNav = UINavigationController(rootViewController: cityListVC)
 
         
-        let favoritesVC = UIViewController()
+        let favoritesVC = FavoritesBuilder.build()
         favoritesVC.tabBarItem = UITabBarItem(
             title: "Favorites",
             image: UIImage(systemName: "star.fill"),
