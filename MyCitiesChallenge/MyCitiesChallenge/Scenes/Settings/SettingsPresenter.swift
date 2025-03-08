@@ -17,7 +17,7 @@
 import Foundation
 
 protocol SettingsPresentationLogic {
-    func presentSuccess(response: Settings.SomeUseCase.Response)
+    func presentResetFavoritesSuccess()
     func presentFailure(message: String)
 }
 
@@ -29,9 +29,8 @@ final class SettingsPresenter: Presenter, SettingsPresentationLogic {
 
     // MARK: - Presentation Logic
 
-    func presentSuccess(response: Settings.SomeUseCase.Response) {
-        let viewModel = Settings.SomeUseCase.ViewModel()
-        view?.displaySomething(viewModel: viewModel)
+    func presentResetFavoritesSuccess() {
+        view?.displayResetFavoritesSuccessfully()
     }
 
     func presentFailure(message: String) {

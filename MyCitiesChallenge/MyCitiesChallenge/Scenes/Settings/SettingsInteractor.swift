@@ -16,8 +16,7 @@
 import Foundation
 
 protocol SettingsBusinessLogic {
-    func requestSomething(request: Settings.SomeUseCase.Request)
-    func userInteractionInSomewhere()
+    func resetFavorites()
 }
 
 final class SettingsInteractor: Interactor, SettingsBusinessLogic {
@@ -30,19 +29,11 @@ final class SettingsInteractor: Interactor, SettingsBusinessLogic {
 
     // MARK: - Business Logic
 
-    func requestSomething(request: Settings.SomeUseCase.Request) {
-        let response = worker.doSomeWork()
-
-        if response {
-            presenter?.presentSuccess(response: Settings.SomeUseCase.Response())
-        } else {
-            presenter?.presentFailure(message: "Error in response")
-        }
+    func resetFavorites() {
+        CitiesRepository.shared.clearFavorites()
+        presenter?.presentResetFavoritesSuccess()
     }
 
     // MARK: - Routing Logic
 
-    func userInteractionInSomewhere() {
-        router?.routeToSomewhere()
-    }
 }

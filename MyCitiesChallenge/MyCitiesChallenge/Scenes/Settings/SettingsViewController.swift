@@ -16,7 +16,7 @@
 import UIKit
 
 protocol SettingsDisplayLogic: ViewLayer {
-    func displaySomething(viewModel: Settings.SomeUseCase.ViewModel)
+    func displayResetFavoritesSuccessfully()
     func displayFailure(message: String)
 }
 
@@ -84,9 +84,6 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         self.setupView()
         self.setupConstraints()
-
-        // Example call to interactor
-        interactor?.userInteractionInSomewhere()
     }
 
     // MARK: - Setup
@@ -115,12 +112,18 @@ class SettingsViewController: UIViewController {
     
     /// Action for reset favorites button tap.
     @objc private func resetFavoritesTapped() {
-        //interactor?.resetFavorites()  // Call interactor to handle favorites reset
+        interactor?.resetFavorites()
     }
 
     /// Action for send feedback button tap.
     @objc private func sendFeedbackTapped() {
-        // Implement feedback logic (e.g., open a mail composer or feedback screen)
+        let alert = UIAlertController(
+            title: "Feedback",
+            message: "This is a sample feedback functionality. In a real app, you would be able to send feedback. By the way, I'd be thrilled if you hired me!",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 
 }
@@ -128,8 +131,10 @@ class SettingsViewController: UIViewController {
 // MARK: - Display Logic
 
 extension SettingsViewController: SettingsDisplayLogic {
-    func displaySomething(viewModel: Settings.SomeUseCase.ViewModel) {
-        // Update the UI with the data from the viewModel
+    func displayResetFavoritesSuccessfully() {
+        let alert = UIAlertController(title: "Success", message: "Favorites have been reset.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 
     func displayFailure(message: String) {
