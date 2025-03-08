@@ -24,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D444AA312D7CF06800C311DD /* MyCitiesChallenge.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MyCitiesChallenge.xctestplan; sourceTree = "<group>"; };
 		D4963DB02D77DF3400F8FC2D /* MyCitiesChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCitiesChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4963DC62D77DF3600F8FC2D /* MyCitiesChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyCitiesChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4963DD02D77DF3600F8FC2D /* MyCitiesChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyCitiesChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +105,7 @@
 		D4963DA72D77DF3400F8FC2D = {
 			isa = PBXGroup;
 			children = (
+				D444AA312D7CF06800C311DD /* MyCitiesChallenge.xctestplan */,
 				D4963DB22D77DF3400F8FC2D /* MyCitiesChallenge */,
 				D4963DC92D77DF3600F8FC2D /* MyCitiesChallengeTests */,
 				D4963DD32D77DF3600F8FC2D /* MyCitiesChallengeUITests */,

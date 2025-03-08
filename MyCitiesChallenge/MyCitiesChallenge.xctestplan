@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "1B7E9E32-42A1-4BCD-8ED6-F9E7E0CA66D0",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:MyCitiesChallenge.xcodeproj",
+      "identifier" : "D4963DAF2D77DF3400F8FC2D",
+      "name" : "MyCitiesChallenge"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:MyCitiesChallenge.xcodeproj",
+        "identifier" : "D4963DC52D77DF3600F8FC2D",
+        "name" : "MyCitiesChallengeTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:MyCitiesChallenge.xcodeproj",
+        "identifier" : "D4963DCF2D77DF3600F8FC2D",
+        "name" : "MyCitiesChallengeUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
