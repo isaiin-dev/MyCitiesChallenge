@@ -35,7 +35,7 @@ class TabBarController: UITabBarController {
         let favoritesNav = UINavigationController(rootViewController: favoritesVC)
 
         
-        let settingsVC = UIViewController()
+        let settingsVC = SettingsBuilder.build()
         settingsVC.tabBarItem = UITabBarItem(
             title: "Settings",
             image: UIImage(systemName: "gear"),
