@@ -41,6 +41,7 @@ class CityListViewController: UIViewController {
     private var currentPage = 0
     private var isPaginating = false
     private var isFiltering = false
+    private var wasFiltered = false
 
     
     private var portraitConstraints: [NSLayoutConstraint] = []
@@ -96,7 +97,10 @@ class CityListViewController: UIViewController {
         setupView()
         setupConstraints()
         updateLayoutForCurrentOrientation()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         loadNextPage()
     }
     
@@ -282,7 +286,14 @@ extension CityListViewController: CityListDisplayLogic {
     
     func displayCities(cities: CityList.LoadCities.Response) {
         hideLoadingIndicator()
-        self.cities.append(contentsOf: cities.cities)
+        
+        if wasFiltered {
+            self.cities = cities.cities
+            wasFiltered = false
+        } else {
+            self.cities.append(contentsOf: cities.cities)
+        }
+        
         currentPage += 1
         isPaginating = false
         print("Cities succesfully loaded")
@@ -291,6 +302,7 @@ extension CityListViewController: CityListDisplayLogic {
     func displayFilteredCities(cities: CityList.SearchCities.Response) {
         hideLoadingIndicator()
         self.cities = cities.filteredCities
+        wasFiltered = true
     }
     
     func displayFailure(message: String) {

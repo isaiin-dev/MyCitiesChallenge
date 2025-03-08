@@ -7,30 +7,10 @@
 
 import Foundation
 
-/// Protocol that defines the methods for loading and retrieving cities.
-protocol CitiesRepositoryProtocol {
-    /// Loads the cities from the JSON file if they haven't been loaded already.
-    /// - Parameter completion: A closure that is called on the main thread with a Bool indicating success.
-    func loadCitiesIfNeeded(completion: @escaping (Bool) -> Void)
-    
-    /// Searches for cities whose name starts with the given prefix.
-    /// - Parameter prefix: The prefix string to search.
-    /// - Returns: An array of matching CityList.City objects.
-    func searchCities(prefix: String) -> [CityList.City]
-    
-    /// Fetches a page of cities from the loaded dataset.
-    /// - Parameters:
-    ///   - pageSize: The number of cities per page.
-    ///   - offset: The starting index of the page.
-    /// - Returns: An array of CityList.City objects for the requested page.
-    func fetchPage(pageSize: Int, offset: Int) -> [CityList.City]
-    
-    /// Add a read-only property for accessing loaded cities
-    var loadedCities: [CityList.City] { get }
-}
-
 /// A repository responsible for loading and searching cities from the bundled JSON file.
-class CitiesRepository: CitiesRepositoryProtocol {
+class CitiesRepository {
+    
+    static let shared = CitiesRepository()
     
     // Background queue for loading and processing the JSON data.
     private let queue = DispatchQueue(label: "com.myCitiesChallenge.CitiesRepositoryQueue", qos: .userInitiated)
@@ -40,6 +20,9 @@ class CitiesRepository: CitiesRepositoryProtocol {
     
     // Flag to ensure cities are loaded only once.
     private var isLoaded: Bool = false
+    
+    /// Key for storing favorite city IDs in UserDefaults.
+    private let favoritesKey = "favoriteCityIDs"
     
     /// Loads the cities from the JSON file if they have not been loaded yet.
     func loadCitiesIfNeeded(completion: @escaping (Bool) -> Void) {
@@ -151,6 +134,49 @@ extension Array where Element == CityList.City {
 extension CitiesRepository {
     var loadedCities: [CityList.City] {
         return cities
+    }
+}
+
+// MARK: Favorites Management
+extension CitiesRepository {
+    
+    /// Retrieves the array of favorite city IDs from UserDefaults.
+    private func getFavoriteIDs() -> [Int] {
+        return UserDefaults.standard.array(forKey: favoritesKey) as? [Int] ?? []
+    }
+    
+    /// Saves the provided array of favorite city IDs to UserDefaults.
+    private func setFavoriteIDs(_ ids: [Int]) {
+        UserDefaults.standard.set(ids, forKey: favoritesKey)
+    }
+    
+    /// Adds a city to favorites by storing its ID.
+    func addFavorite(city: CityList.City) {
+        var ids = getFavoriteIDs()
+        if !ids.contains(city.id) {
+            ids.append(city.id)
+            setFavoriteIDs(ids)
+        }
+    }
+    
+    /// Removes a city from favorites by deleting its ID.
+    func removeFavorite(city: CityList.City) {
+        var ids = getFavoriteIDs()
+        if let index = ids.firstIndex(of: city.id) {
+            ids.remove(at: index)
+            setFavoriteIDs(ids)
+        }
+    }
+    
+    /// Returns all favorite cities by filtering the loaded cities with stored favorite IDs.
+    func getFavorites() -> [CityList.City] {
+        let ids = getFavoriteIDs()
+        return cities.filter { ids.contains($0.id) }
+    }
+    
+    /// Checks if the given city is marked as a favorite.
+    func isFavorite(city: CityList.City) -> Bool {
+        return getFavoriteIDs().contains(city.id)
     }
 }
 
