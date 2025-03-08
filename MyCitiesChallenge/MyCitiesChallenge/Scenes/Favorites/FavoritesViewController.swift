@@ -115,6 +115,7 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     /// Handles selection of a favorite city cell.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCity = favorites[indexPath.row]
+        interactor?.goToCityDetail(city: selectedCity)
     }
 }
 

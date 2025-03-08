@@ -17,7 +17,7 @@ import Foundation
 
 protocol FavoritesBusinessLogic {
     func fetchFavorites()
-    func userInteractionInSomewhere()
+    func goToCityDetail(city: CityList.City)
 }
 
 final class FavoritesInteractor: Interactor, FavoritesBusinessLogic {
@@ -39,7 +39,7 @@ final class FavoritesInteractor: Interactor, FavoritesBusinessLogic {
 
     // MARK: - Routing Logic
 
-    func userInteractionInSomewhere() {
-        router?.routeToSomewhere()
+    func goToCityDetail(city: CityList.City) {
+        router?.routeToCityDetail(city: city)
     }
 }
