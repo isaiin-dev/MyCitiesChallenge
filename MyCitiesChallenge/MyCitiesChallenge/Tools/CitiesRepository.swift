@@ -178,5 +178,10 @@ extension CitiesRepository {
     func isFavorite(city: CityList.City) -> Bool {
         return getFavoriteIDs().contains(city.id)
     }
+    
+    /// Removes all favorite city IDs from UserDefaults.
+    func clearFavorites() {
+        setFavoriteIDs([])
+    }
 }
 
