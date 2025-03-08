@@ -14,6 +14,7 @@ class CityTableViewCell: UITableViewCell {
     // MARK: - Static Properties
     
     public static let IDENTIFIER = "CityTableViewCell"
+    var favoriteChangedAction: (() -> Void)?
     
     // MARK: - UI Components
     
@@ -44,34 +45,19 @@ class CityTableViewCell: UITableViewCell {
         return button
     }()
     
-    /// Button that opens an information screen for the selected city.
-    private lazy var infoButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Info", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
     // MARK: - Model
     
     /// The city model to be displayed in the cell.
     var city: CityList.City? {
         didSet {
             guard let city = city else { return }
-            // Update the title label with the city name and country.
             titleLabel.text = "\(city.name), \(city.country)"
-            // Update the subtitle label with the coordinates.
             subtitleLabel.text = "Lat: \(city.coord.lat), Lon: \(city.coord.lon)"
-            // The favourite button state should be set based on your favourite logic.
-            // For instance, using a shared FavoritesManager (not shown here).
-            // favouriteButton.isSelected = FavoritesManager.shared.isFavorite(city: city)
+            favouriteButton.isSelected = CitiesRepository.shared.isFavorite(city: city)
         }
     }
     
     // MARK: - Actions Callbacks
-    
-    /// Closure to be called when the favourite button is toggled.
-    var favouriteToggleAction: (() -> Void)?
     
     /// Closure to be called when the info button is tapped.
     var infoButtonAction: (() -> Void)?
@@ -95,11 +81,9 @@ class CityTableViewCell: UITableViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(subtitleLabel)
         contentView.addSubview(favouriteButton)
-        contentView.addSubview(infoButton)
         
         // Set up button targets.
         favouriteButton.addTarget(self, action: #selector(toggleFavourite), for: .touchUpInside)
-        infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
     }
     
     /// Sets up Auto Layout constraints for all subviews.
@@ -110,13 +94,9 @@ class CityTableViewCell: UITableViewCell {
             favouriteButton.widthAnchor.constraint(equalToConstant: 30),
             favouriteButton.heightAnchor.constraint(equalToConstant: 30),
             
-            infoButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            infoButton.trailingAnchor.constraint(equalTo: favouriteButton.leadingAnchor, constant: -8),
-            infoButton.widthAnchor.constraint(equalToConstant: 50),
-            
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            titleLabel.trailingAnchor.constraint(equalTo: infoButton.leadingAnchor, constant: -8),
+            titleLabel.trailingAnchor.constraint(equalTo: favouriteButton.leadingAnchor, constant: -8),
             
             subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
             subtitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
@@ -129,8 +109,14 @@ class CityTableViewCell: UITableViewCell {
     
     /// Toggles the favourite state and calls the associated closure.
     @objc private func toggleFavourite() {
-        favouriteToggleAction?()
         favouriteButton.isSelected.toggle()
+        guard let city = self.city else { return }
+        if favouriteButton.isSelected {
+            CitiesRepository.shared.addFavorite(city: city)
+        } else {
+            CitiesRepository.shared.removeFavorite(city: city)
+        }
+        favoriteChangedAction?()
     }
     
     /// Calls the info action closure when the info button is tapped.
@@ -145,6 +131,5 @@ class CityTableViewCell: UITableViewCell {
         titleLabel.text = nil
         subtitleLabel.text = nil
         favouriteButton.isSelected = false
-        infoButton.setTitle("Info", for: .normal)
     }
 }

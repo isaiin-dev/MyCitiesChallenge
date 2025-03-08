@@ -30,7 +30,7 @@ final class CityListInteractor: Interactor, CityListBusinessLogic {
     var router: CityListRoutingLogic?
     let worker = CityListWorker()
     
-    private let repository: CitiesRepositoryProtocol = CitiesRepository()
+    private let repository = CitiesRepository.shared
 
     // MARK: - Business Logic
 
