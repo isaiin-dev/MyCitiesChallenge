@@ -27,7 +27,46 @@ class SettingsViewController: UIViewController {
     var interactor: SettingsBusinessLogic?
 
     // MARK: - Subviews
-    // Place your UI components here (e.g., UILabels, UIButtons, etc.)
+    
+    /// A vertical stack view to hold settings UI components.
+    private lazy var stackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .vertical
+        sv.spacing = 16
+        sv.alignment = .fill
+        sv.distribution = .fillEqually
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        return sv
+    }()
+
+    /// Label to display app version information.
+    private lazy var appInfoLabel: UILabel = {
+        let label = UILabel()
+        label.text = "App Version: 1.0.0"
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    /// Button to reset favorites.
+    private lazy var resetFavoritesButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Reset Favorites", for: .normal)
+        button.addTarget(self, action: #selector(resetFavoritesTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
+    /// Button to send feedback.
+    private lazy var sendFeedbackButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Send Feedback", for: .normal)
+        button.addTarget(self, action: #selector(sendFeedbackTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
 
     // MARK: - Object Lifecycle
 
@@ -56,20 +95,34 @@ class SettingsViewController: UIViewController {
         self.title = "Settings"
         view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        stackView.addArrangedSubview(appInfoLabel)
+        stackView.addArrangedSubview(resetFavoritesButton)
+        stackView.addArrangedSubview(sendFeedbackButton)
+        view.addSubview(stackView)
     }
 
     private func setupConstraints() {
-        // Add and activate your constraints here
-        // Example:
-        // someView.translatesAutoresizingMaskIntoConstraints = false
-        // NSLayoutConstraint.activate([
-        //     someView.topAnchor.constraint(equalTo: view.topAnchor),
-        //     someView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-        //     ...
-        // ])
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            stackView.heightAnchor.constraint(equalToConstant: 150)
+        ])
     }
 
     // MARK: - Actions
+    
+    /// Action for reset favorites button tap.
+    @objc private func resetFavoritesTapped() {
+        //interactor?.resetFavorites()  // Call interactor to handle favorites reset
+    }
+
+    /// Action for send feedback button tap.
+    @objc private func sendFeedbackTapped() {
+        // Implement feedback logic (e.g., open a mail composer or feedback screen)
+    }
+
 }
 
 // MARK: - Display Logic
